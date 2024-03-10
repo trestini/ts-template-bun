@@ -1,0 +1,97 @@
+{
+  "name": "template_bun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "contributors": [
+    {
+      "name": "Rafael Trestini"
+    }
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@koa/cors": "^5.0.0",
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.41.1",
+    "@opentelemetry/exporter-logs-otlp-http": "^0.48.0",
+    "@opentelemetry/exporter-metrics-otlp-proto": "^0.48.0",
+    "@opentelemetry/sdk-metrics": "^1.21.0",
+    "@opentelemetry/sdk-node": "^0.48.0",
+    "@opentelemetry/sdk-trace-node": "^1.21.0",
+    "@opentelemetry/semantic-conventions": "^1.21.0",
+    "amqplib": "^0.10.3",
+    "bunyan": "^1.8.15",
+    "dotenv": "^16.4.1",
+    "html-entities": "^2.4.0",
+    "koa": "^2.15.0",
+    "koa-bodyparser": "^4.4.1",
+    "koa-favicon": "^2.1.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^12.0.1",
+    "ky": "^1.2.0",
+    "luxon": "^3.4.4",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.4",
+    "@types/bunyan": "^1.8.11",
+    "@types/koa": "^2.14.0",
+    "@types/koa-bodyparser": "^4.3.12",
+    "@types/koa-router": "^7.4.8",
+    "@types/luxon": "^3.4.2",
+    "typeorm-codebase-sync": "^1.1.2"
+  },
+  "scripts": {
+    "cli": "bun src/cli.ts",
+    "clidev": "bun src/cli.ts --watch",
+    "lint": "yarn eslint src --ext .ts",
+    "start": "bun --preload ./src/preload.ts src/index.ts",
+    "dev": "bun --preload ./src/preload.ts --watch src/index.ts",
+    "debug": "bun --preload ./src/preload.ts --watch --inspect=0.0.0.0:9220 src/index.ts",
+    "test": "ts-jest --verbose --detectOpenHandles",
+    "predev": "bun typeorm-sync",
+    "typeorm-sync": "typeorm-codebase-sync addReferences --dataSource ./src/db/data-source.ts --migrations ./src/db/migrations --entities ./src/db/entities --subscribers ./src/db/subscribers"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "transform": {
+      "\\.ts$": "ts-jest"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "coverageReporters": [
+      "text",
+      "text-summary"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)x?$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/",
+      "/coverage/",
+      "/config/",
+      "/migrations/"
+    ]
+  },
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "**/*.{ts,js}",
+    "!**/node_modules/**",
+    "!**/dist/**",
+    "!**/coverage/**"
+  ]
+}

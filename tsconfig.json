@@ -1,0 +1,24 @@
+{
+  "version": "2.0.2",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "lib": ["ES5", "ES6", "DOM"],
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "baseUrl": "src",
+    "paths": {
+      "@controllers/*": ["controllers/*"],
+      "@entities/*": ["db/entities/*"],
+      "@models/*": ["models/*"],
+      "@modules/*": ["modules/*"],
+      "@services/*": ["services/*"],
+      "@utils/*": ["utils/*"]
+    }
+  },
+  "include": ["./src/**/*"]
+}

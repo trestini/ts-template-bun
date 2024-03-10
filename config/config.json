@@ -1,0 +1,7 @@
+{
+  "MainApi": {
+    "baseUri": "/v1",
+    "autoDiscoveryFeatures": true,
+    "routes": []
+  }
+}
